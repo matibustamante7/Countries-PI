@@ -1,0 +1,38 @@
+.card {
+    border: 1px solid #ccc;
+    border-radius: 0.25rem;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    padding: 1rem;
+    background-color: #EFECE7; /* Fondo */
+    width: 30%;
+    margin: 10px;
+  }
+  .flag{
+    width: 40%;
+    border: .1rem solid #394C60;
+  }
+  .card_title {
+    font-size: 1.5rem;
+    margin-bottom: 0.5rem;
+    color: #394C60; /* Color del título */
+  }
+  
+  .card_body {
+    font-size: 1rem;
+    line-height: 1.5;
+    color: #A38970; /* Color del contenido */
+  }
+  .card_name{
+    font-size: 1.25rem;
+    line-height: 1.5;
+    color: #A38970;
+  }
+  /* En este ejemplo, hemos utilizado el color #EFECE7 como color de fondo para la tarjeta. Para el título, hemos utilizado el color #394C60 y para el contenido hemos utilizado el color #A38970.
+  
+  Recuerda que estos son solo ejemplos y puedes ajustar los colores y estilos según tus necesidades para crear la tarjeta que deseas.
+  
+  
+   */
+  
+  
+  

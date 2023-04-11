@@ -1,0 +1,42 @@
+import { Link, useParams } from "react-router-dom";
+import { useSelector, useDispatch } from "react-redux";
+import './Detail_style.css';
+import { useEffect } from "react";
+import { getDetailCountry } from "../../redux/actions";
+const Detail = () => {
+    
+    const { idCountry } = useParams();
+
+    const dispatch = useDispatch();
+
+    const countryDetail = useSelector((state) => state.detailCountry)
+
+    useEffect(() => {
+        dispatch(getDetailCountry(idCountry))
+    }, [])
+
+    return (
+        <><div className="card_Detail">
+        <div className="data1">
+            <img src={countryDetail.image} alt={`Flag to ${countryDetail.image}`} />
+            <h1>{countryDetail.nombre}</h1>
+            <p>ID: {countryDetail.id}</p>
+        </div>
+
+        <div className="data2">
+            <h2>Continent: {countryDetail.continente}</h2>
+            <h3>Capital: {countryDetail.capital}</h3>
+            <h4>Subregion: {countryDetail?.subregion}</h4>
+            <h4>Area: {countryDetail?.area}</h4>
+            <h4>Population: {countryDetail?.poblacion}</h4>
+        </div>
+        
+    </div>
+    <Link to={'/countries'}>
+        Back
+    </Link>
+        </>
+        
+    )
+}
+export default Detail;

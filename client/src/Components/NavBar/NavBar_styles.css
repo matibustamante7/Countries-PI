@@ -1,0 +1,32 @@
+:root{
+    --color-arena:#A38970;
+    --color-gris:#CDCAC5;
+    --color-blanco:#EFECE7;
+    --color-azulcito:#6E7F91;
+    --color-azul:#394C60;
+}
+.container_NavBar{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    height: 80px;
+    background-color:var(--color-blanco);
+    border-radius: 0.25rem;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+.container_Links{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    width: 520px;
+}
+a{
+    color:var(--color-azulcito);
+    text-decoration: none;
+    font-size: 25px;
+    margin: auto;
+    font-weight: 700;
+}
+a:hover{
+    color:var(--color-azul)
+}

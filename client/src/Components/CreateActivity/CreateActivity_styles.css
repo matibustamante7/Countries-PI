@@ -1,0 +1,99 @@
+.create_Activity{
+    width: 400px;
+    margin: 40px auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+    border: 1px solid #ccc;
+    border-radius: 0.25rem;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    padding: 1rem;
+    background-color: #EFECE7; 
+}
+.container_labels{
+    display: flex;
+    flex-direction: column;
+    width: 95%;
+}
+.label_input{
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.input_text{
+    flex: 1;
+    padding: 0.5rem;
+    border-radius: 0.25rem;
+    background-color: white;
+    font-size: 1rem;
+    border: 1.2px solid rgb(107, 107, 107);
+    margin: 5px;
+    height: 40px;
+    position: relative;
+    right: 1;
+}
+.label_input_title{
+    color:var(--color-azulcito);
+    text-decoration: none;
+    font-size: 25px;
+    margin: auto;
+    font-weight: 700;
+}
+
+
+.container_checkboxs{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    margin-top: 10px;
+}
+.checkbox_text{
+    color: var(--color-azulcito);
+    font-weight: 400;
+}
+
+.countries_selected{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+.countries_selected_ul{
+    color:var(--color-azulcito);
+    text-decoration: none;
+    font-size: 25px;
+    margin: 10px;
+    padding: 0;
+}
+.countries_selected_li{
+    color: #000;
+    text-decoration: none;
+    font-size: 18px;
+    margin: 10px;
+    padding: 0;
+    list-style: none;
+}
+
+.countries{
+    flex: 1;
+    padding: 0.5rem;
+    border-radius: 0.25rem;
+    background-color: white;
+    font-size: 1rem;
+    border: 1.2px solid rgb(107, 107, 107);
+    margin: 15px 5px 5px 5px;
+    height: 40px;
+}
+.btn_submit{
+    background-color:var(--color-azul);
+    color: white;
+    padding: 0.5rem;
+    border: none;
+    border-radius: 0.25rem;
+    cursor: pointer;
+    height: 30px;
+}
+.btn_submit:active{
+    background-color: var(--color-azulcito);
+}

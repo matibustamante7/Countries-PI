@@ -1,0 +1,23 @@
+.card_Detail{
+    width: 700px;
+    margin: 40px auto;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-around;
+    border: 1px solid #ccc;
+    border-radius: 0.25rem;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    padding: 1rem;
+    background-color: #EFECE7; 
+}
+.data1{
+    width: 30%;
+    height: 80%;
+}
+img{
+    width: 100%;
+}
+.data2{
+    text-align: start;
+}
