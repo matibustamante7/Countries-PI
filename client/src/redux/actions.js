@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { GET_ACTIVITIES, FILTER_BY_CONTINENT, GET_COUNTRIES, ORDER_BY_NAME, GET_COUNTRY_NAME, GET_DETAIL_COUNTRY, CREATE_ACTIVITY } from './actionsType';
+import { ORDER_BY_DIFFICULTY, GET_ACTIVITIES, FILTER_BY_CONTINENT, GET_COUNTRIES, ORDER_BY_POPULATION, GET_COUNTRY_NAME, GET_DETAIL_COUNTRY, CREATE_ACTIVITY, ORDER_BY_NAME } from './actionsType';
 
 export const getCountries = () => {
     return async function (dispatch) {
@@ -49,19 +49,26 @@ export const createActivity = (payload) => {
 
 export const postActivities = (payload) => {
     return async function (dispatch) {
-        const json = await axios.post('http://localhost:3001/activities', payload);
+        const json = await axios.post('http://localhost:3001/create-activity', payload);
         return json;
     }
 }
 export const getActivities = () => {
     return async function (dispatch) {
-        const json = await axios.get('http://localhost:3001/activities')
-        dispatch({type: GET_ACTIVITIES, payload: json})
+        const json = await axios.get('http://localhost:3001/activities');
+        const activities = json.data;
+        dispatch({type: GET_ACTIVITIES, payload: activities})
     }
 }
-export const orderByDifficult = (payload) => {
+export const orderByPopulation = (payload) => {
     return {
-        type: ORDER_BY_NAME,
+        type: ORDER_BY_POPULATION,
+        payload
+    }
+}
+export const orderByDifficulty = (payload) => {
+    return{
+        type: ORDER_BY_DIFFICULTY,
         payload
     }
 }

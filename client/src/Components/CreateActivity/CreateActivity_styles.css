@@ -1,6 +1,10 @@
+body{
+    background-color: var(--color-background)
+}
 .create_Activity{
-    width: 400px;
-    margin: 40px auto;
+    width: 600px;
+    /* height: 580px; */
+    margin:  50px auto;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -37,7 +41,7 @@
 .label_input_title{
     color:var(--color-azulcito);
     text-decoration: none;
-    font-size: 25px;
+    font-size: 20px;
     margin: auto;
     font-weight: 700;
 }
@@ -48,12 +52,17 @@
     flex-direction: row;
     justify-content: space-around;
     margin-top: 10px;
+    width: 90%;
+    /* border: 2px solid #000; */
 }
 .checkbox_text{
     color: var(--color-azulcito);
     font-weight: 400;
 }
-
+.checkbox_text:hover{
+    color: var(--color-azul);
+    cursor: pointer;
+}
 .countries_selected{
     display: flex;
     flex-direction: row;
@@ -84,6 +93,10 @@
     border: 1.2px solid rgb(107, 107, 107);
     margin: 15px 5px 5px 5px;
     height: 40px;
+}
+.countries:hover{
+    background-color: var(--color-gris);
+    cursor: pointer;
 }
 .btn_submit{
     background-color:var(--color-azul);

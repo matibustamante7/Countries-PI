@@ -1,7 +1,7 @@
 import Card from "../Card/Card";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { getCountries, filterByContinent } from "../../redux/actions";
+import { getCountries, filterByContinent, orderByPopulation } from "../../redux/actions";
 import './Home_styles.css';
 import { orderByName } from "../../redux/actions";
 import Pagination from "../Pagination/Pagination";
@@ -48,13 +48,22 @@ const Home = () => {
 
     //estado para ordenar los paises por nombre
     const [orden, setOrden] = useState('');
-
+    //ordenar por oreden alfabetico
     function handleOrderByName (e){
         e.preventDefault();
         dispatch(orderByName(e.target.value));
         //seteamos para que se acomoden en la pagina 1
         setCurrentPage(1);
         setOrden('Ordenado ' + e.target.value )
+    }
+
+    const [ordenPop, setOrdenPop] = useState();
+    //ordenar por poblacion
+    function handleOrderByPopulation (e){
+        dispatch(orderByPopulation(e.target.value));
+        //seteamos para que se acomoden en la pagina 1
+        setCurrentPage(1);
+        setOrdenPop('Ordenado ' + e.target.value )
     }
 
     return (
@@ -71,8 +80,12 @@ const Home = () => {
                 <option value='Antarctica'>Antartica</option>
             </select>
             <select onChange={e => handleOrderByName(e)} className="select">
-                <option value="asc">Ascendente</option>
-                <option value="desc">Descendente</option>
+                <option value="asc">Alphabetic: A to Z</option>
+                <option value="desc">Alphabetic: Z to A</option>
+            </select>
+            <select onChange={e => handleOrderByPopulation(e)} className="select">
+                <option value="major">Population: From more to less</option>
+                <option value="minor">Population: From less to more</option>
             </select>
 
             <Pagination

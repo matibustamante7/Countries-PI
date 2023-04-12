@@ -24,12 +24,17 @@ export default function CreateActivity() {
         const max = 5;
         //tomo el valor ingresado en el value a traves del evento
         const value = event.target.value;
-        //establezco que el numero no se pase del min ni max, por ejemplo si pongo 7 me limita a 5, si pongo 0 a 1
+        //establezco que el numero no se pase del min ni max
+        //por ejemplo si pongo 7 me limita a 5, si pongo 0 a 1
         const newValue = Math.min(Math.max(value, min), max);
         //el value es el newValue
         event.target.value = newValue;
     }
 
+    function handleInputNumber(event) {
+        controllerNumber(event);
+        handleChange(event);
+    }
 
     const temporadas = ['Summer', "Winter", 'Fall', 'Spring']
 
@@ -72,7 +77,6 @@ export default function CreateActivity() {
             // .then(res => alert(res.data))
             .catch(err => alert(err))
 
-        alert('Activity created!!');
         //volvemos a setear los inputs en vacio
         setActivity({
             name: '',
@@ -81,7 +85,8 @@ export default function CreateActivity() {
             temporada: '',
             countries: []
         })
-        history.push('/countries')
+        //history es para que al enviar el form nos lleve de nuevo a la ruta
+        history.push('/activities')
     }
 
     function handleCheck(event) {
@@ -108,7 +113,7 @@ export default function CreateActivity() {
                     <h2 className="label_input_title">Difficulty: </h2>
                     <input className="input_text" type="number" name="dificultad" value={activity.dificultad}
                         placeholder="Numbers from 1 to 5..."
-                        onChange={(event) => handleChange(event)}
+                        onChange={(event) => handleInputNumber(event)}
                         ></input>
                 </label>
 

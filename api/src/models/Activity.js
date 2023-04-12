@@ -25,6 +25,10 @@ module.exports = (sequelize) => {
     temporada:{
         type: DataTypes.STRING,
         allowNull:false
+    },
+    paises:{
+      type:DataTypes.ARRAY(DataTypes.STRING),
+      allowNull:false
     }
   },{
     timestamps: false

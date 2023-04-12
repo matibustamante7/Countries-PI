@@ -2,13 +2,12 @@ import React, { useEffect , useState} from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getActivities } from "../../redux/actions";
 import Card_Activity from "../Card Activity/Card_Activity";
-import { orderByDifficult } from "../../redux/actions";
+import { orderByDifficulty } from "../../redux/actions";
 import './Activities_styles.css'
 export default function Activities() {
 
-    const activities = (useSelector((state) => state.activities.data));
+    const activities = useSelector((state) => state.activities);
     const dispatch = useDispatch();
-
     useEffect(() => {
         dispatch(getActivities());
     }, [])
@@ -16,18 +15,19 @@ export default function Activities() {
     //estado para ordenar las actividades por dificultad
     const [orden, setOrden] = useState();
 
-    function handleDifficult (e){
-        // e.preventDefault();
-        dispatch(orderByDifficult(e.target.value));
-        setOrden('Ordenado ' + e.target.value )
+    function handleorderByDifficulty(e) {
+        dispatch(orderByDifficulty(e.target.value));
+        //seteamos el estado local del orden para actualizar
+        setOrden('ordenado' + e.target.value)
     }
-
+    
+   
     return (
         <div className="primary_container">
-            <h1>Actividades</h1>
-            <select onChange={e => handleDifficult(e)} className="select">
-                <option value="easy">Difficulty: Easier to Harder</option>
-                <option value="hard">Difficulty: More difficult to easier</option>
+            <h1>Activities</h1>
+            <select className="select" onChange={e=> handleorderByDifficulty(e)}>
+                <option value="easy">Difficulty: 1 to 5</option>
+                <option value="hard">Difficulty: 5 to 1</option>
             </select>
             <div className="container_Activities">
                 {activities.map(activity => (
@@ -38,11 +38,10 @@ export default function Activities() {
                         difficulty={activity.dificultad}
                         duration={activity.duracion}
                         season={activity.temporada}
+                        countries={activity.paises}
                     />
                 ))}
             </div>
-            {
-        console.log(activities)}
         </div>
 
     )

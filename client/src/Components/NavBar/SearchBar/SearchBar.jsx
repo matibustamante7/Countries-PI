@@ -6,6 +6,7 @@ import { getCountryByName } from "../../../redux/actions";
 export default function SearchBar() {
 
     const dispatch = useDispatch()
+    
     //creamos el estado local del searchBar para buscar el pais
     const [country, setCountry] = useState('');
     //lo que vaya escribiendo en el input lo voy guardando en el estado local

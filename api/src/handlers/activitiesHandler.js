@@ -8,8 +8,8 @@ const postActivitiesHandler = async (req, res) => {
     //crear la actividad en la DB y relacionarla con al menos un pais
 
     try {
-        let { name, dificultad, duracion, temporada } = req.body;
-        const newActivity = await createActivity(name, dificultad, duracion, temporada);
+        let { name, dificultad, duracion, temporada , paises} = req.body;
+        const newActivity = await createActivity(name, dificultad, duracion, temporada, paises);
         
         res.status(200).json('Nueva actividad creada')
     } catch (error) {
@@ -22,7 +22,7 @@ const getAllActivitiesHandler = async (req, res) => {
         const restults = await getAllActivities();
         res.status(200).json(restults)
     } catch (error) {
-        res.sendt(400).json({error:error.message})
+        res.status(400).json({error:error.message})
     }
 }
 
