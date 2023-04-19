@@ -16,25 +16,11 @@ export default function CreateActivity() {
     }, [])
     // console.log(countries);
 
-    //funcion el evento onChange
-    function controllerNumber(event) {
-        
-        //establezco el minimo y maximo de dificultad posible
-        const min = 1;
-        const max = 5;
-        //tomo el valor ingresado en el value a traves del evento
-        const value = event.target.value;
-        //establezco que el numero no se pase del min ni max
-        //por ejemplo si pongo 7 me limita a 5, si pongo 0 a 1
-        const newValue = Math.min(Math.max(value, min), max);
-        //el value es el newValue
-        event.target.value = newValue;
-    }
+    
 
-    function handleInputNumber(event) {
-        controllerNumber(event);
-        handleChange(event);
-    }
+    // function handleInputNumber(event) {
+    //     handleChange(event);
+    // }
 
     const temporadas = ['Summer', "Winter", 'Fall', 'Spring']
 
@@ -44,38 +30,44 @@ export default function CreateActivity() {
         dificultad: '',
         duracion: '',
         temporada: '',
-        countries: []
+        paises: []
     });
 
     //crear el handle para enviar y crear la actividad
     function handleChange(event) {
-        setActivity({
-            ...activity,
+        validate({...activity, [event.target.name]: event.target.value});
+        
             //cada vez que ejecuto la funcion a mi estado activity le
             //agrego el value del input que este modificando
+        
+        setActivity({
+            ...activity,
             [event.target.name]: event.target.value
         })
-        console.log(activity);
+        // console.log(activity);
     }
 
     //funcion para seleccionar el pais o paises
     function handleSelect(event) {
-        //al ser dos elementos select se mezclaban al hacer event.target.value, entonces filtre que para que se agreguen en paises no esten incluidos en la season
-        if (!temporadas.includes(event.target.value)) {
+        if (temporadas.includes(event.target.value)) {
             setActivity({
-                ...activity,
-                //le paso una copia de lo que ya habia y o seleccionado, lo que ya habia es un array vacio
-                countries: [...activity.countries, event.target.value]
-            })
-        }
+              ...activity,
+              temporada: event.target.value
+            });
+          } else {
+            setActivity({
+              ...activity,
+              paises: [...activity.paises, event.target.value]
+            });
+          }
     }
 
     //funcion para submit
     function handleSubmit(event) {
         event.preventDefault();
         axios.post('http://localhost:3001/activities', activity)
-            // .then(res => alert(res.data))
-            .catch(err => alert(err))
+            .then(res => console.log(res))
+            .catch(err => console.log(err))
 
         //volvemos a setear los inputs en vacio
         setActivity({
@@ -83,65 +75,108 @@ export default function CreateActivity() {
             dificultad: '',
             duracion: '',
             temporada: '',
-            countries: []
+            paises: []
         })
         //history es para que al enviar el form nos lleve de nuevo a la ruta
-        history.push('/activities')
+        history.push('/view-activities')
     }
 
     function handleCheck(event) {
+           
+          
         if (event.target.checked) {
             setActivity({
                 ...activity,
                 temporada: event.target.value
             })
+            
         }
     }
 
 
+    //estado de errores
+    const [error, setError] = useState({
+        name: '',
+        dificultad: '',
+        duracion: '',
+        temporada: '',
+        countries: []
+    })
+
+    //recibo el estado del formulario
+    const validate = (activity) => {
+        console.log(activity);
+        if (activity.name.length < 3) {
+          setError({...error, name:'Enter a name with at least 3 characters'})
+        } else {
+          setError({...error, name:''})
+        }
+      
+        if (!activity.dificultad) {
+          setError({...error, dificultad:'Enter a difficulty level'})
+        } else {
+          setError({...error, dificultad:''})
+        }
+      
+        if (!activity.duracion) {
+          setError({...error, duracion:'Enter a duration'})
+        } else {
+          setError({...error, duracion:''})
+        }
+      
+        if (activity.paises.length === 0) {
+          setError({...error, countries:'Select at least one country'})
+        } else {
+          setError({...error, countries:[]})
+        }
+      } 
+
     return (
-        <form className="create_Activity" onSubmit={(event) => handleSubmit(event)}>
+        <form className="create_Activity" onSubmit={handleSubmit}>
             <h1>Create yor tourist activity</h1>
 
             <div className="container_labels">
                 <label className="label_input" htmlFor="name"><h2 className="label_input_title">Activity: </h2>
                     <input className="input_text" type="text" name="name"
-                        value={activity.nombre} placeholder="Name of the activity..." onChange={(event) => handleChange(event)}></input>
+                        value={activity.name} placeholder="Name of the activity..." onChange={(event) => handleChange(event)}></input>
+                        {error.name && <p className="text_error">{error.name}</p>}
                 </label>
 
                 <label className="label_input" htmlFor="dificultad">
-                    <h2 className="label_input_title">Difficulty: </h2>
-                    <input className="input_text" type="number" name="dificultad" value={activity.dificultad}
-                        placeholder="Numbers from 1 to 5..."
-                        onChange={(event) => handleInputNumber(event)}
-                        ></input>
+                    <h2 className="label_input_title">Difficulty: (1-5)</h2>
+                    <input className="input_text" type="range"
+                    min='1' max='5' 
+                    name="dificultad" value={activity.dificultad}
+                        onChange={(event) => handleChange(event)}
+                    ></input>
                 </label>
 
                 <label className="label_input" htmlFor="duracion">
-                    <h2 className="label_input_title">Duration: </h2> 
-                    <input  className="input_text" type="time" name="duracion"
+                    <h2 className="label_input_title">Duration: </h2>
+                    <input className="input_text" type="time" name="duracion"
                         value={activity.duracion}
                         onChange={(event) => handleChange(event)}></input>
                 </label>
             </div>
 
             <div className="container_checkboxs">
-                <label className="checkbox_text"><input type="checkbox"
+                <label className="checkbox_text">
+                    <input type="radio"
                     name="temp"
                     value="Summer"
                     onChange={(event) => handleCheck(event)} /><b>Summer</b></label>
 
-                <label className="checkbox_text"><input type="checkbox"
+                <label className="checkbox_text"><input type="radio"
                     name="temp"
                     value="Winter"
                     onChange={(event) => handleCheck(event)} /><b>Winter</b></label>
 
-                <label className="checkbox_text"><input type="checkbox"
+                <label className="checkbox_text"><input type="radio"
                     name="temp"
                     value="Fall"
                     onChange={(event) => handleCheck(event)} /><b>Fall</b></label>
 
-                <label className="checkbox_text"><input type="checkbox"
+                <label className="checkbox_text"><input type="radio"
                     name="temp"
                     value="Spring"
                     onChange={(event) => handleCheck(event)} /><b>Spring</b></label>
@@ -161,12 +196,12 @@ export default function CreateActivity() {
             {/* aca podemos ver cada pais seleccionado */}
             <label className="countries_selected">
                 <ul className="countries_selected_ul">Country/ies selected:
-                    {activity.countries.map(country => (
-                        <li className="countries_selected_li">{country}</li>
+                    {activity.paises.map(pais => (
+                        <li className="countries_selected_li" key={pais}>{pais}</li>
                     ))}
                 </ul>
             </label>
-            <button className="btn_submit" type="submit">Create new activity</button>
+            <button className="btn_submit" type="submit" >Create new activity</button>
         </form>
 
     )

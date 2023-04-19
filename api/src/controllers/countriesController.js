@@ -26,8 +26,17 @@ const countryByIdController = async (id) => {
     return country;
 }
 const searchCountryByNameController = async(name) => {
-    const countryByName =  await Country.findAll({where: {nombre:name}});
-    return countryByName;
+    const countryByName =  await Country.findAll();
+    const results =[];
+    console.log(countryByName);
+    countryByName.forEach(country => {
+        if (country.nombre.toLowerCase().includes(name.toLowerCase())) {
+            results.push(country);
+        }
+    });
+    
+    console.log(results);
+    return results;
 }
 
 

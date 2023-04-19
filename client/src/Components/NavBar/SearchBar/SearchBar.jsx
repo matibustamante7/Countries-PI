@@ -15,7 +15,7 @@ export default function SearchBar() {
         event.preventDefault();
         //seteamos el estado local con el valor ingresado en el inpu
         setCountry(event.target.value);
-        console.log(country);
+        // console.log(country);
     }
 
     //creamos un handle submit para enviar el pais ingresado en la searchBar

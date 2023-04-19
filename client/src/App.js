@@ -19,8 +19,8 @@ function App() {
           <Route exact path='/' component={LandingPage} />
           <Route exact path='/countries' component={Home} />
           <Route exact path='/countries/:idCountry' component={Detail} />
-          <Route path='/create-activity' component={CreateActivity}/>
-          <Route exact path='/activities' component={Activities}/>
+          <Route path='/activities' component={CreateActivity}/>
+          <Route exact path='/view-activities' component={Activities}/>
         </Switch>
       
 

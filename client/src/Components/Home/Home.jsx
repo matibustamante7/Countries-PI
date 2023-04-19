@@ -9,6 +9,8 @@ import Pagination from "../Pagination/Pagination";
 
 const Home = () => {
 
+
+    
     // arreglo del estado con los paises
     const countries = useSelector((state) => state.countries)
 
@@ -43,6 +45,7 @@ const Home = () => {
     //filtro de paises por continente
     function handleFilterContinent(e) {
         //despachamos la action con el evento
+        paginado(1)
         dispatch(filterByContinent(e.target.value))
     }
 
@@ -112,5 +115,7 @@ const Home = () => {
             </div>
         </div>
     )
+    
 }
+
 export default Home;

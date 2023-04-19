@@ -1,4 +1,4 @@
-const {Activity} = require('../db');
+const {Activity, Country} = require('../db');
 
 const createActivity = async (name, dificultad, duracion, temporada, paises) =>{
     const newActivity = await Activity.create({name, dificultad, duracion, temporada, paises});
@@ -6,7 +6,7 @@ const createActivity = async (name, dificultad, duracion, temporada, paises) =>{
 }
 
 const getAllActivities = async () => {
-    const allActivities = await Activity.findAll();
+    const allActivities = await Activity.findAll({include: Country});
     return allActivities;
 }
 

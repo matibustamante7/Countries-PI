@@ -17,10 +17,13 @@ export const getDetailCountry = (id) => {
 }
 
 export const getCountryByName = (nombre) => {
+    // console.log(nombre);
     return async function (dispatch) {
        try {
         let json = await axios('http://localhost:3001/countries?name='+nombre)
-         return dispatch({ type: GET_COUNTRY_NAME, payload: json.data })
+        let country = json.data;
+        console.log(country);
+        dispatch({ type: GET_COUNTRY_NAME, payload: country })
        } catch (error) {
         console.log({error:error.message});
        }
@@ -49,7 +52,7 @@ export const createActivity = (payload) => {
 
 export const postActivities = (payload) => {
     return async function (dispatch) {
-        const json = await axios.post('http://localhost:3001/create-activity', payload);
+        const json = await axios.post('http://localhost:3001/activities', payload);
         return json;
     }
 }
