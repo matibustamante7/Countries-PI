@@ -15,7 +15,6 @@ const getAllActivities = async () => {
             }
         }
     });
-    console.log(allActivities);
     return allActivities;
 }
 

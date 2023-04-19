@@ -7,5 +7,6 @@ activitiesRouter.get('/', getAllActivitiesHandler)
 
 activitiesRouter.post('/', postActivitiesHandler)
 
+activitiesRouter.delete('/', getAllActivitiesHandler)
    
 module.exports = activitiesRouter; 

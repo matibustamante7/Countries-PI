@@ -19,15 +19,16 @@ const Detail = () => {
     console.log(activities);
     
     // let actCountry = [];
-    // let arg = 'Argentina'
+    // let countries = activities.paises;
+    // let country = countryDetail.nombre;
 
     // activities.forEach((activity) => {
-    //     if (activity.paises == arg) {
+    //     if (countries.indexOf(country)) {
     //         actCountry.push(activity)
     //     }
     // });
     // console.log(actCountry);
-    // console.log(actCountry.dificultad);
+    // console.log(actCountry.name);
     return (
         <>
             <div className="card_Detail">
@@ -47,7 +48,11 @@ const Detail = () => {
             </div>
             {/* <div className="card_Detail">
                     <h2>Tourist activities:</h2>
-                    <p>Nombre act: {actCountry.id}</p>
+                    {
+                        actCountry.map(act => (
+                            <p key={act.id}>{act.name}</p>
+                        ))
+                    }
                 </div> */}
             <Link to={'/countries'}>
                 Back

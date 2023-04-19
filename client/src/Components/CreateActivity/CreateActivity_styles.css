@@ -110,3 +110,8 @@ body{
 .btn_submit:active{
     background-color: var(--color-azulcito);
 }
+
+.text_error{
+    color: red;
+    font-weight: 300;
+}

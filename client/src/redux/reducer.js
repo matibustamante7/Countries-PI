@@ -1,4 +1,5 @@
-import { ORDER_BY_DIFFICULTY, FILTER_BY_CONTINENT, ORDER_BY_POPULATION, GET_COUNTRIES, ORDER_BY_NAME, GET_COUNTRY_NAME, GET_DETAIL_COUNTRY, CREATE_ACTIVITY, GET_ACTIVITIES } from "./actionsType";
+import axios from "axios";
+import { ORDER_BY_DIFFICULTY, FILTER_BY_CONTINENT, ORDER_BY_POPULATION, GET_COUNTRIES, ORDER_BY_NAME, GET_COUNTRY_NAME, GET_DETAIL_COUNTRY, CREATE_ACTIVITY, GET_ACTIVITIES, DELETE_ACTIVITY } from "./actionsType";
 
 const initialState = {
     countries: [],
@@ -68,6 +69,13 @@ const rootReducer = (state = initialState, { type, payload }) => {
             return {
                 ...state,
                 activities: payload
+            }
+        case DELETE_ACTIVITY:
+            const filterActivities = state.activities.filter((activity) => activity.id !== payload)
+
+            return{
+                ...state,
+                activities: filterActivities    
             }
         case ORDER_BY_POPULATION:
 

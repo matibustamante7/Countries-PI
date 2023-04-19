@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { ORDER_BY_DIFFICULTY, GET_ACTIVITIES, FILTER_BY_CONTINENT, GET_COUNTRIES, ORDER_BY_POPULATION, GET_COUNTRY_NAME, GET_DETAIL_COUNTRY, CREATE_ACTIVITY, ORDER_BY_NAME } from './actionsType';
+import { ORDER_BY_DIFFICULTY, GET_ACTIVITIES, FILTER_BY_CONTINENT, GET_COUNTRIES, ORDER_BY_POPULATION, GET_COUNTRY_NAME, GET_DETAIL_COUNTRY, CREATE_ACTIVITY, ORDER_BY_NAME, DELETE_ACTIVITY } from './actionsType';
 
 export const getCountries = () => {
     return async function (dispatch) {
@@ -43,12 +43,12 @@ export const orderByName = (payload) => {
     }
 }
 
-// export const createActivity = (payload) => {
-//     return{
-//         type: CREATE_ACTIVITY,
-//         payload
-//     }
-// }
+export const deleteActivity = (id) => {
+    return{
+        type: DELETE_ACTIVITY,
+        payload : id
+    }
+}
 
 export const postActivities = (payload) => {
     return async function (dispatch) {

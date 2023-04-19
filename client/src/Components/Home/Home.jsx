@@ -9,8 +9,6 @@ import Pagination from "../Pagination/Pagination";
 
 const Home = () => {
 
-
-    
     // arreglo del estado con los paises
     const countries = useSelector((state) => state.countries)
 
@@ -18,7 +16,7 @@ const Home = () => {
     // el primero con la pagina actual
     const [currentPage, setCurrentPage] = useState(1) // 1 porque arranca en la pagina 1
     // el segundo estado es para la cantidad de paises por pagina
-    const [countriesxPage, setCountriesxPage] = useState(12);//CAMBIAR A 10 
+    const [countriesxPage, setCountriesxPage] = useState(10);//CAMBIAR A 10 
     // el 10 es porque tengo que mostrar 10 por pagina
 
     // constante del ultimo pais
