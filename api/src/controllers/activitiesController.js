@@ -6,7 +6,16 @@ const createActivity = async (name, dificultad, duracion, temporada, paises) =>{
 }
 
 const getAllActivities = async () => {
-    const allActivities = await Activity.findAll({include: Country});
+    const allActivities = await Activity.findAll({
+        include:{
+            model: Country,
+            attibutes: ['name'],
+            through:{
+                attibutes: [],
+            }
+        }
+    });
+    console.log(allActivities);
     return allActivities;
 }
 

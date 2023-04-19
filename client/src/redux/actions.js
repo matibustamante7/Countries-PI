@@ -43,16 +43,17 @@ export const orderByName = (payload) => {
     }
 }
 
-export const createActivity = (payload) => {
-    return{
-        type: CREATE_ACTIVITY,
-        payload
-    }
-}
+// export const createActivity = (payload) => {
+//     return{
+//         type: CREATE_ACTIVITY,
+//         payload
+//     }
+// }
 
 export const postActivities = (payload) => {
     return async function (dispatch) {
         const json = await axios.post('http://localhost:3001/activities', payload);
+        dispatch({type: CREATE_ACTIVITY, payload})
         return json;
     }
 }

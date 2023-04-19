@@ -14,13 +14,6 @@ export default function CreateActivity() {
     useEffect(() => {
         dispatch(getCountries());
     }, [])
-    // console.log(countries);
-
-    
-
-    // function handleInputNumber(event) {
-    //     handleChange(event);
-    // }
 
     const temporadas = ['Summer', "Winter", 'Fall', 'Spring']
 
@@ -66,8 +59,8 @@ export default function CreateActivity() {
     function handleSubmit(event) {
         event.preventDefault();
         axios.post('http://localhost:3001/activities', activity)
-            .then(res => console.log(res))
-            .catch(err => console.log(err))
+            .then(res => alert('ok: '+ res.data))
+            .catch(err => alert('error: '+err))
 
         //volvemos a setear los inputs en vacio
         setActivity({

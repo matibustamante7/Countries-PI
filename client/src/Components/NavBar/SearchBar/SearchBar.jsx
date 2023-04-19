@@ -23,7 +23,7 @@ export default function SearchBar() {
         event.preventDefault();
         // aca despachamos la accion con la funcion para traer por nombre y le paso el pais que esta en el estado local, lo que acabamos de escribir
         dispatch(getCountryByName(country));
-        setCountry('');  
+        setCountry(' ');  
     }
     return(
         <div className="container_SearchBar">

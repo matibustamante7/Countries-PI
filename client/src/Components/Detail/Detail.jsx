@@ -17,6 +17,17 @@ const Detail = () => {
 
     const activities = useSelector((state) => state.activities);
     console.log(activities);
+    
+    // let actCountry = [];
+    // let arg = 'Argentina'
+
+    // activities.forEach((activity) => {
+    //     if (activity.paises == arg) {
+    //         actCountry.push(activity)
+    //     }
+    // });
+    // console.log(actCountry);
+    // console.log(actCountry.dificultad);
     return (
         <>
             <div className="card_Detail">
@@ -34,10 +45,10 @@ const Detail = () => {
                     <h4>Population: {countryDetail?.poblacion}</h4>
                 </div>
             </div>
-            <div className="card_Detail">
+            {/* <div className="card_Detail">
                     <h2>Tourist activities:</h2>
-                    
-                </div>
+                    <p>Nombre act: {actCountry.id}</p>
+                </div> */}
             <Link to={'/countries'}>
                 Back
             </Link>
